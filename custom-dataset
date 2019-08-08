@@ -30,7 +30,6 @@ class ItemLists(Dataset):
         with open(txt_file, 'r') as f:
             self.lines = f.readlines()
         self.transform = transform
-        self.classes = set()
 
     def __len__(self):
 
@@ -42,7 +41,6 @@ class ItemLists(Dataset):
         if is_image_file(img_path):
             img = Image.open(img_path)
             label = int(self.lines[idx].strip().split()[1])
-            self.classes.add(label)
             label = torch.tensor(label)
 
             if self.transform:
