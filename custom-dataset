@@ -1,3 +1,37 @@
+import os
+import numpy as np
+
+class Split2TnV():
+    def __init__(self, root, th=0):
+        
+        self.root = root
+        self.th = th
+        self.counter = 0
+        self.train = open('train.txt', 'w')
+        self.val = open('val.txt', 'w')
+        
+    def closeFile(self):
+        
+        self.train.close()
+        self.val.close()
+        
+    def creatList(self):
+        
+        for root, dirs, files in os.walk(self.root):
+            if len(files) > self.th:
+                valIdx = np.random.randint(0, len(files), min(int(np.ceil(len(files)*0.1)), 2))
+                for i in range(len(files)):
+                    if i in valIdx:
+                        self.val.write(os.path.join(root, files[i]) + ' ' + str(self.counter) + '\n')
+                    else:
+                        self.train.write(os.path.join(root, files[i]) + ' ' + str(self.counter) + '\n')
+                self.counter += 1
+                if self.counter % 100 == 0:
+                    print('proceed {} calsses'.format(self.counter))
+        self.closeFile()
+
+
+
 IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif', '.tiff', '.webp')
 
 def has_file_allowed_extension(filename, extensions):
