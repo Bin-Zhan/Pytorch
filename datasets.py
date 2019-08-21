@@ -4,22 +4,30 @@ from torch.utils.data import Dataset
 
 
 class Split2TnV():
+    """
+    Used to help split images into train set and validation set.
+
+    Args:
+        root (string): path to the root folder
+        th (int): threshold used to control class imbalance;
+                Default: 0
+    """
 
     def __init__(self, root, th=0):
-     
+
         self.root = root
         self.th = th
         self.counter = 0
         self.train = open('train.txt', 'w')
         self.val = open('val.txt', 'w')
-       
+
     def closeFile(self):
-       
+
         self.train.close()
         self.val.close()
-        
+
     def creatList(self):
-        
+
         for root, dirs, files in os.walk(self.root):
             if len(files) > self.th:
                 valIdx = np.random.randint(0, len(files), min(int(np.ceil(len(files)*0.1)), 2))
@@ -65,6 +73,17 @@ def is_image_file(filename):
     return has_file_allowed_extension(filename, IMG_EXTENSIONS)
 
 class ItemList(Dataset):
+    """
+    Custom pytorch Dataset
+
+    Args:
+        txt_file (string): path to txt file containing image path and label
+        transform: torchvision transforms used for image preprocessing and augmentation;
+                Default: None
+
+    Returns:
+        tuple: tensors of image and label
+    """
 
     def __init__(self, txt_file, transform=None):
 
