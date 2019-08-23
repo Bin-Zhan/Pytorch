@@ -3,18 +3,15 @@ from torch import nn
 
 class SVSoftmax(nn.Module):
     """
-    An implementation of Support Vector Guided Softmax Loss for Face Recognition firstly proposed in this paper:
+    An implementation of Support Vector Guided Softmax Loss for Face Recognition:
     https://arxiv.org/pdf/1812.11317.pdf
 
     Args:
-        embedding_size: feature dimension, e.g. 512
-        classnum: number of total classes
-        s: the scale value;
-            Default: 30
-        t: indicator parameter, see the paper for detailed introduction;
-            Default: 1.2
-        m: margin value used in Arcface Loss;
-            Default: 0.5
+        embedding_size (int): Feature dimension, e.g. 512.
+        classnum (int): Number of total classes.
+        s (float): The scale value. Default: 30.
+        t (float): Indicator parameter, see the paper for detailed introduction. Default: 1.2.
+        m: Margin value used in Arcface Loss. Default: 0.5.
     """
     def __init__(self, embedding_size, classnum, s=30., t=1.2, m=0.5):
         super(SVSoftmax, self).__init__()

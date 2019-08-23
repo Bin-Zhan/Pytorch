@@ -8,9 +8,8 @@ class Split2TnV():
     Used to help split images into train set and validation set.
 
     Args:
-        root (string): path to the root folder
-        th (int): threshold used to control class imbalance;
-                Default: 0
+        root (string): Path to the root folder.
+        th (int): Threshold used to control class imbalance. Default: 0.
     """
 
     def __init__(self, root, th=0):
@@ -52,8 +51,8 @@ def has_file_allowed_extension(filename, extensions):
     """
     Checks if a file is an allowed extension.
     Args:
-        filename (string): path to a file
-        extensions (tuple of strings): extensions to consider (lowercase)
+        filename (string): Path to a file.
+        extensions (tuple of strings): Extensions to consider (lowercase).
     Returns:
         bool: True if the filename ends with one of given extensions
     """
@@ -65,9 +64,9 @@ def is_image_file(filename):
     """
     Checks if a file is an allowed image extension.
     Args:
-        filename (string): path to a file
+        filename (string): Path to a file.
     Returns:
-        bool: True if the filename ends with a known image extension
+        bool: True if the filename ends with a known image extension.
     """
 
     return has_file_allowed_extension(filename, IMG_EXTENSIONS)
@@ -77,12 +76,11 @@ class ItemList(Dataset):
     Custom pytorch Dataset
 
     Args:
-        txt_file (string): path to txt file containing image path and label
-        transform: torchvision transforms used for image preprocessing and augmentation;
-                Default: None
+        txt_file (string): Path to txt file containing image path and label.
+        transform: Torchvision transforms used for image preprocessing and augmentation. Default: None.
 
     Returns:
-        tuple: tensors of image and label
+        tuple: Tensors of image and label.
     """
 
     def __init__(self, txt_file, transform=None):
