@@ -3,8 +3,7 @@ from torch import nn
 
 class SVSoftmax(nn.Module):
     """
-    An implementation of Support Vector Guided Softmax Loss for Face Recognition:
-    https://arxiv.org/pdf/1812.11317.pdf
+    An implementation of Support Vector Guided Softmax Loss for Face Recognition: https://arxiv.org/pdf/1812.11317.pdf
 
     Args:
         embedding_size (int): Feature dimension, e.g. 512.

@@ -4,4 +4,9 @@
 
 
 ### Losses:
-  1. **SVSoftmax:** Support Vector Guided Softmax Loss;
+  1. **SVSoftmax:** Support Vector Guided Softmax Loss for Face Recognition: https://arxiv.org/pdf/1812.11317.pdf;
+
+
+### Schedulers:
+  1. **CyclicalLR:** Cyclical Learning Rates for Training Neural Networks: https://arxiv.org/pdf/1506.01186.pdf;
+  2. **CosineLR:** SGDR: STOCHASTIC GRADIENT DESCENT WITH WARM RESTARTS: https://arxiv.org/pdf/1608.03983.pdf;
