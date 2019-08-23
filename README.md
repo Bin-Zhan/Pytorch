@@ -5,6 +5,7 @@
 
 ### Losses:
   1. **SVSoftmax:** Support Vector Guided Softmax Loss for Face Recognition: https://arxiv.org/pdf/1812.11317.pdf;
+  2. **Arcface:** ArcFace: Additive Angular Margin Loss for Deep Face Recognition: https://arxiv.org/pdf/1801.07698.pdf;
 
 
 ### Schedulers:

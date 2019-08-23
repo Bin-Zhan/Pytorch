@@ -1,6 +1,7 @@
 from torch.optim.lr_scheduler import _LRScheduler
 
 
+
 class CyclicalLR(_LRScheduler):
     """
     An implementation of Cyclical Learning Rates for Training Neural Networks: https://arxiv.org/pdf/1506.01186.pdf
@@ -25,6 +26,8 @@ class CyclicalLR(_LRScheduler):
                                                                    (cycle - 1))
             for base_lr in self.base_lrs
         ]
+
+
 
 class CosineLR(_LRScheduler):
     """
