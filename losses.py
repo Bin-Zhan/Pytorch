@@ -55,6 +55,9 @@ class SVSoftmax(nn.Module):
         s (float): The scale value. Default: 30.
         t (float): Indicator parameter, see the paper for detailed introduction. Default: 1.2.
         m: Margin value used in Arcface Loss. Default: 0.5.
+
+    Notes:
+        This implementation is based on arcface.
     """
     def __init__(self, embedding_size, classnum, s=30., t=1.2, m=0.5):
         super(SVSoftmax, self).__init__()
