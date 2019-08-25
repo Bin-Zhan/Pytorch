@@ -104,5 +104,7 @@ class ItemList(Dataset):
 
             if self.transform:
                 img = self.transform(img)
+        else:
+            return self[(idx+1) % self.__len__()]        
 
-            return img, label
+        return img, label
