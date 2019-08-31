@@ -96,7 +96,7 @@ class ItemList(Dataset):
 
     def __getitem__(self, idx):
 
-        img_path = self.lines[idx].strip().split()[:-1]
+        img_path = self.lines[idx].strip().split(' ')[:-1]
         if isinstance(img_path, list):
             img_path = ' '.join(img_path)
 
