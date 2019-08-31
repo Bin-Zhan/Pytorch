@@ -96,11 +96,14 @@ class ItemList(Dataset):
 
     def __getitem__(self, idx):
 
-        img_path = self.lines[idx].strip().split()[0]
+        img_path = self.lines[idx].strip().split()[:-1]
+        if isinstance(img_path, list):
+            img_path = ' '.join(img_path)
+
         if is_image_file(img_path):
             try:
                 img = Image.open(img_path)
-                label = int(self.lines[idx].strip().split()[1])
+                label = int(self.lines[idx].strip().split()[-1])
                 label = torch.tensor(label)
 
                 if self.transform:
