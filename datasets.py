@@ -96,22 +96,25 @@ class ItemList(Dataset):
 
     def __getitem__(self, idx):
 
-        img_path = self.lines[idx].strip().split(' ')[:-1]
-        if isinstance(img_path, list):
+        line = self.lines[idx].strip().split(' ')
+        if len(line) > 2:
+            img_path = line[:-1]
             img_path = ' '.join(img_path)
+        else:
+            img_path = line[0]
 
         if is_image_file(img_path):
             try:
                 img = Image.open(img_path)
-                label = int(self.lines[idx].strip().split()[-1])
+                label = int(line[-1])
                 label = torch.tensor(label)
 
                 if self.transform:
                     img = self.transform(img)
             except OSError:
                 print('xxxxxxxxxx Image file is corrupted: {} xxxxxxxxxx'.format(img_path))
-                return self[(idx+1) % self.__len__()]
+                return self[(idx+1) % len(self)]
         else:
-            return self[(idx+1) % self.__len__()]
+            return self[(idx+1) % len(self)]
 
         return img, label
