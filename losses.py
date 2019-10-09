@@ -1,6 +1,9 @@
 import torch
 from torch import nn
+from torch.nn import functional
 
+import math
+import numpy as np
 
 
 class Arcface(nn.Module):
@@ -31,7 +34,7 @@ class Arcface(nn.Module):
         cos_m = math.cos(self.m)
         sin_m = math.sin(self.m)
 
-        cos_theta = F.linear(F.normalize(embbedings), F.normalize(self.kernel))
+        cos_theta = functional.linear(functional.normalize(embbedings), functional.normalize(self.kernel))
         sin_theta = torch.sqrt(1.0 - torch.pow(cos_theta, 2))
         cos_theta_m = cos_theta * cos_m - sin_theta * sin_m
         cos_theta_m = torch.where(cos_theta > self.m, cos_theta_m, cos_theta)
@@ -42,7 +45,6 @@ class Arcface(nn.Module):
         output = (one_hot * cos_theta_m) + (1.0 - one_hot) * cos_theta
 
         return output * self.s
-
 
 
 class SVSoftmax(nn.Module):
@@ -79,7 +81,7 @@ class SVSoftmax(nn.Module):
         cos_m = math.cos(self.m)
         sin_m = math.sin(self.m)
 
-        cos_theta = F.linear(F.normalize(embbedings), F.normalize(self.kernel))
+        cos_theta = functional.linear(functional.normalize(embbedings), functional.normalize(self.kernel))
         sin_theta = torch.sqrt(1.0 - torch.pow(cos_theta, 2))
         cos_theta_m = cos_theta * cos_m - sin_theta * sin_m
         cos_theta_t = self.t * cos_theta + self.t - 1
