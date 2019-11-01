@@ -14,3 +14,9 @@
 ### Schedulers:
   1. **CyclicalLR:** Cyclical Learning Rates for Training Neural Networks: https://arxiv.org/pdf/1506.01186.pdf;
   2. **CosineLR:** SGDR: STOCHASTIC GRADIENT DESCENT WITH WARM RESTARTS: https://arxiv.org/pdf/1608.03983.pdf;
+
+
+---
+### CosineAnnealingWarmRestarts(1.3.0):
+  1. **T_0:** cycle length;
+  2. **T_mult:** cycle length multiplier;
