@@ -20,3 +20,4 @@
 ### CosineAnnealingWarmRestarts(1.3.0):
   1. **T_0:** cycle length;
   2. **T_mult:** cycle length multiplier;
+![cosine_annealing_warm_restarts](https://user-images.githubusercontent.com/20135989/68026469-cccc5200-fcea-11e9-9399-11e4a5a5eae3.png)
