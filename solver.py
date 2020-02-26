@@ -16,10 +16,6 @@ from torch.utils.data import DataLoader
 import torchvision
 from torchvision import transforms
 
-from lossutils import Arcface
-from datautils import ItemList
-from resnets import resnext101_32x8d
-
 
 
 # helper functions
@@ -71,7 +67,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # save model
 t = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-snapshots = '/mnt/dataserver/zhanbin/frs/snapshots/{}'.format(t)
+snapshots = './snapshots/{}'.format(t)
 if not os.path.exists(snapshots):
     os.makedirs(snapshots)
 
@@ -80,50 +76,13 @@ end_lr = 1e-5
 batch = 512
 epochs = 20
 workernum = 4
-num_classes = 78924
+num_classes = 1000
 
-train_txt = 'ms_train.txt'
-val_txt = 'ms_valid.txt'
-
-trainset = ItemList(train_txt, transform=transforms.Compose([
-    transforms.RandomHorizontalFlip(),
-    transforms.ToTensor(),
-    transforms.Normalize((0.5,), (0.5,))
-]))
-trainloader = DataLoader(trainset,
-    batch_size=batch,
-    shuffle=True,
-    num_workers=workernum,
-    drop_last=True,
-    pin_memory=True
-)
-
-valset = ItemList(val_txt, transform=transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize((0.5,), (0.5,))
-]))
-valoader = DataLoader(valset,
-    batch_size=batch,
-    shuffle=True,
-    num_workers=workernum,
-    drop_last=True,
-    pin_memory=True
-)
+# dataloader
 
 # nets
 class Net(nn.Module):
-    def __init__(self):
-        super(Net, self).__init__()
-
-        self.features = resnext101_32x8d()
-        self.fc = Arcface(512, num_classes)
-
-    def forward(self, x, label=None):
-
-        features = self.features(x)
-        out = self.fc(features, label)
-
-        return out
+    pass
 
 model = Net()
 print(model)
